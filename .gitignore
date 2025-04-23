@@ -1,0 +1,46 @@
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+dist/
+.env
+.env.*
+
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vite build
+frontend/dist/
+
+# Backend build (si usas TypeScript o transpilas)
+backend/build/
+backend/dist/
+
+# Editor configs
+.vscode/
+.idea/
+*.swp
+
+# React/Parcel/Vite cache
+frontend/.vite/
+frontend/.cache/
+
+# Backend cache
+backend/.cache/
+backend/.eslintcache
+
+# Optional: si usas coverage tools
+coverage/
+
+# Optional: si usas Docker
+docker-compose.override.yml
+*.local
