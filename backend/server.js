@@ -12,11 +12,7 @@ app.use(express.json());
 
 // Manejar resgistro de usuario
 app.post('/register', async (req, res) => {
-  const { name, email, password, card } = req.body;
-
-  if (!name || !email || !password || !card) {
-    return res.status(400).json({ error: 'Todos los campos son obligatorios' });
-  }
+  const { name, email, password, credit, date } = req.body;
 
   try {
     // Verificar si el correo ya está registrado
@@ -26,7 +22,7 @@ app.post('/register', async (req, res) => {
     }
 
     // Verificar si la tarjeta de crédito ya está registrada
-    const [existingCard] = await db.promise().query('SELECT * FROM users WHERE card = ?', [card]);
+    const [existingCard] = await db.promise().query('SELECT * FROM users WHERE card = ?', [credit]);
     if (existingCard.length > 0) {
       return res.status(409).json({ error: 'La tarjeta de crédito ya está registrada' });
     }
@@ -36,8 +32,8 @@ app.post('/register', async (req, res) => {
 
     // Insertar nuevo usuario con contraseña cifrada
     await db.promise().query(
-      'INSERT INTO users (name, email, password, card) VALUES (?, ?, ?, ?)',
-      [name, email, hashedPassword, card]
+      'INSERT INTO users (name, email, password, card, date) VALUES (?, ?, ?, ?, ?)',
+      [name, email, hashedPassword, credit, date]
     );
 
     res.status(201).json({ success: true, message: 'Usuario registrado con éxito' });
@@ -46,8 +42,6 @@ app.post('/register', async (req, res) => {
     res.status(500).json({ error: 'Error del servidor' });
   }
 });
-
-
 
 //manejar Inicio de sesion
 app.post('/login', async (req, res) => {
@@ -138,7 +132,58 @@ app.put('/seats/:id', (req, res) => {
   });
 });
 
+// Manejar Comments
+app.get('/comments/:idpeli', (req, res) => {
+  const idpeli = req.params.idpeli;
+  const sql = `SELECT * FROM comments  WHERE idpeli = ?`;
+  db.query(sql, [idpeli], (err, result) => {
+      if (err) {
+        console.error('Error al obtener los comentarios:', err);
+        return res.status(500).json({ error: 'Error del servidor' });
+      }
+
+      res.json(result);
+    }
+  );
+});
+
+app.post('/comments/:idpeli', async (req, res) => {
+  const idpeli = req.params.idpeli;
+  const { nameuser, comment } = req.body;
+  const today = new Date().toISOString().split('T')[0];
+
+  try {
+    await db.promise().query(
+      'INSERT INTO comments (nameuser, idpeli, comment, created_at) VALUES (?, ?, ?, ?)',
+      [nameuser, idpeli, comment, today]
+    );
+
+    res.status(201).json({ success: true, message: 'Comentario registrado con éxito' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Error del servidor' });
+  }
+});
+
+app.put('/comments/:id', (req, res) => {
+  const commentId = req.params.id;
+  const { comment } = req.body;
+
+  const sql = `
+    UPDATE comments SET comment = ? WHERE id = ?
+  `;
+
+  db.query(sql, [comment, commentId], (err, result) => {
+    if (err) {
+      console.error('Error al actualizar el comentario:', err);
+      return res.status(500).json({ error: 'Error del servidor' });
+    }
+
+    res.json({ message: 'Comentario actualizado correctamente' });
+  });
+});
+
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`Servidor corriendo en http://192.168.1.249:${PORT}`);
+  console.log(`Servidor corriendo en http://192.168.1.238:${PORT}`);
 });

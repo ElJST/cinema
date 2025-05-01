@@ -1,27 +1,45 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { SliderImg } from '../components/SliderImg';
-import { Movie } from '../components/Movie';
+import { ShowMovies } from '../components/ShowMovies';
+import { ShowMoviesMobile } from '../components/ShowMoviesMobile';
 
-export const Cartelera = ({nameuser}) => {
+export const Cartelera = () => {
+    const [user, setUser] = useState(() => {
+        const storedUser = localStorage.getItem('userActive');
+        return storedUser ? JSON.parse(storedUser).name : '';
+    });
 
-  return (
-    <section className='mt-[80px] '>
-      <SliderImg />
+    useEffect(() => {
+        const handleUserUpdate = () => {
+            const storedUser = localStorage.getItem('userActive');
+            setUser(storedUser ? JSON.parse(storedUser).name : '');
+        };
 
-      {
-        nameuser ? (
-          <div className='flex justify-center items-center h-[65px] bg-gray-900 text-white border-t-1 border-amber-50 md:hidden'>
-            <h1 className='font-bold '>Bienvenid@, {nameuser}</h1>
-          </div>
-        ) : (
-          <div className='flex justify-center items-center h-[65px] bg-gray-900 text-white border-t-1 border-amber-50 md:hidden'>
-            <h1 className='font-bold '>Inicia Sesión o Registrate</h1>
-          </div>
-        )
-      }
+        window.addEventListener('userActiveUpdated', handleUserUpdate);
 
-      <Movie />
-      
-    </section>
-  )
-}
+        return () => {
+            window.removeEventListener('userActiveUpdated', handleUserUpdate);
+        };
+    }, []);
+
+    return (
+        <>
+            <SliderImg />
+            <section className='h-[55px] w-full border-t border-white/70 '>
+                {user ? (
+                    <section className='h-full w-full flex justify-center items-center text-inherit bg-inherit text-lg'>
+                        <p className='underline underline-offset-[4px] font-semibold'>Bienvenid@ {user}.</p>
+                    </section>
+                ) : (
+                    <div className="hidden"></div>
+                )}
+            </section>
+            <section className='md:hidden'>
+                <ShowMoviesMobile />
+            </section>
+            <section className='hidden md:block'>
+                <ShowMovies />
+            </section>
+        </>
+    );
+};

@@ -1,9 +1,14 @@
 import React from 'react'
+import { Card, CardFooter } from "@heroui/react";
 
 export const Footer = () => {
-  return (
-    <footer className='bg-gray-900 text-white flex justify-center items-center h-[80px] border-t border-amber-50 fixed w-full bottom-0'>
-      <p className='text-sm text-center'>© 2025 Cinema. Todos los derechos reservados por Justin.</p>
-    </footer>
-  )
+    return (
+        <>
+            <Card isFooterBlurred shadow='md' className="border-none h-14 p-1" radius="lg">
+                <CardFooter className="justify-between border border-amber-50/20 rounded-2xl z-10 h-full">
+                    <p className="text-tiny w-full text-center">© 2025 Cinema. Todos los derechos reservados por Justin.</p>
+                </CardFooter>
+            </Card>
+        </>
+    )
 }

@@ -1,67 +1,127 @@
+import React from 'react';
+import { Form, Input, InputOtp } from "@heroui/react";
+import { MyButton } from '../components/MyButton';
+import { Link } from "@heroui/react";
 import axios from 'axios';
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-export const Login = ({setuser}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [msj, setMsj] = useState('');
+export const Login = () => {
+  const [password, setPassword] = React.useState("");
+  const [errors, setErrors] = React.useState({});
+  const [touched, setTouched] = React.useState({
+    password: false
+  });
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
+  const getPasswordError = (value) => {
+    if (value.length < 4) {
+      return "La contraseña debe tener 4 digitos";
+    }
+
+    return null;
+  }
+
+  const onSubmit = async(e) => {
     e.preventDefault();
+    const data = Object.fromEntries(new FormData(e.currentTarget));
+
+    // Custom validation checks
+    const newErrors = {};
+
+    // Password validation
+    const passwordError = getPasswordError(data.password);
+
+    if (passwordError) {
+      newErrors.password = passwordError;
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+
+      return;
+    }
+
+    setErrors({});
+
     try {
-      const response = await axios.post('http://192.168.1.249:3001/login', {
-        email,
-        password
+      const response = await axios.post('http://192.168.1.238:3001/login', {
+        email: data.email,
+        password: data.password
       });
+      
       console.log('Login correcto', response.data);
-      setuser(response.data.user.name);
       const token = {
-        email: response.data.user.email,
+        id: response.data.user.id,
         name: response.data.user.name,
-        id: response.data.user.id
+        email: response.data.user.email,
       }
       localStorage.setItem('userActive', JSON.stringify(token));
-      navigate('/cartelera');
+      navigate('/cartelera', { replace: true });
+      window.dispatchEvent(new Event("userActiveUpdated"));
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
-      setMsj('Error al iniciar sesion. Verifica tus credenciales.');
-      document.querySelectorAll('input').forEach((input) =>{
-        input.value = '';
-        input.classList.add('border-red-500');
-      }) 
+      console.log(email, password)
     }
-  };
-
+  }
   return (
-    <section className='bg-gray-300 mt-[80px] relative -top-20'>
-      <div className="w-full h-screen " >
-        <div className="flex flex-col items-center justify-center h-full">
-          <h1 className='text-3xl font-bold'>Iniciar Sesión</h1>
-          <form onSubmit={handleLogin} className='flex flex-col items-center mt-4'>
-            <input
-              type="text"
-              placeholder='Email'
-              className='border border-gray-500 p-1 text-center mb-4 rounded-2xl'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
+    <>
+      <Form
+        className="w-full h-[81vh] md:h-[79vh] justify-center items-center space-y-2 pt-4 pb-8 bg-white "
+        validationErrors={errors}
+        onSubmit={onSubmit}
+      >
+        <h1 className='ligth text-foreground text-xl font-bold'>Iniciar Sesión</h1>
+        <div className="flex flex-col gap-4 max-w-md">
+
+          <Input
+            isRequired
+            errorMessage={({ validationDetails }) => {
+              if (validationDetails.valueMissing) {
+                return "Please enter your email";
+              }
+              if (validationDetails.typeMismatch) {
+                return "Please enter a valid email address";
+              }
+            }}
+            label="Email"
+            labelPlacement="outside"
+            name="email"
+            placeholder="Enter your email"
+            type="email"
+          />
+
+          <div>
+            <p className="ligth text-foreground text-small ">Password <span className='text-red-400'>*</span></p>
+            <InputOtp
+              isRequired
+              allowedKeys={'^[0-9]*$'}
               type="password"
-              placeholder='Contraseña'
-              className='border border-gray-500 p-1 text-center mb-4 rounded-2xl'
+              errorMessage={touched.password ? getPasswordError(password) : undefined}
+              isInvalid={touched.password && getPasswordError(password) !== null}
+              name="password"
+              size={"sm"}
+              color={'primary'}
+              variant={"faded"}
+              length={4}
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onValueChange={setPassword}
+              onBlur={() => setTouched((prev) => ({ ...prev, password: true }))}
             />
-            <p className='text-gray-500 text-sm mb-2'>No estas registrado? <Link to={'register'} className='text-blue-400 text-sm'>Registrate</Link></p>
-            
-            <button type="submit" className='bg-blue-800 hover:bg-blue-700 cursor-pointer mt-2 text-white p-1 rounded-2xl px-5'>Iniciar Sesión</button>
-          </form>
-          {msj && <p className='text-red-500 mt-2'>{msj}</p>}
-          
+          </div>
+
+          <p className='text-gray-500 text-sm mb-2'>Aun no estas registrado? <Link href={'/register'} className='text-blue-400 text-sm'>Registrate</Link></p>
+
+          {errors.terms && <span className="text-danger text-small">{errors.terms}</span>}
+
+          <div className="flex justify-center">
+            <MyButton
+              text={'Enviar'}
+              color={'primary'}
+              type="submit"
+            />
+          </div>
         </div>
-      </div>
-    </section>
-  );
-};
+      </Form>
+    </>
+  )
+}
