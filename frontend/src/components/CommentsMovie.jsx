@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Textarea, User } from "@heroui/react";
+import { Textarea, User, addToast } from "@heroui/react";
 import { MyButton } from './MyButton';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
@@ -26,17 +26,34 @@ export const CommentsMovie = () => {
         const request = existingComment
             ? axios.put(`http://192.168.1.238:3001/comments/${existingComment.id}`, {
                 comment: textArea
+            }).then(() => {
+                addToast({
+                    title: 'Éxito',
+                    description: 'Comentario actualizado correctamente',
+                    color: 'default',
+                    timeout: 2500,
+                });
             })
             : axios.post(`http://192.168.1.238:3001/comments/${movieId}`, {
                 nameuser: user,
                 comment: textArea
+            }).then(() => {
+                addToast({
+                    title: 'Éxito',
+                    description: 'Comentario publicado correctamente',
+                    color: 'success',
+                    timeout: 2500,
+                });
             });
 
-        request.then(() => {
-            setTextArea('');
-            reloadComments();
-        }).catch((err) => console.log('Error al guardar comentario: ' + err));
+        request
+            .then(() => {
+                setTextArea('');
+                reloadComments();
+            })
+            .catch((err) => console.log('Error al guardar comentario: ' + err));
     };
+
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -44,9 +61,9 @@ export const CommentsMovie = () => {
             const name = storedUser ? JSON.parse(storedUser).name : '';
             setUser(name);
         }, 150);
-    
+
         return () => clearInterval(interval);
-    }, []);    
+    }, []);
 
     useEffect(() => {
         reloadComments();

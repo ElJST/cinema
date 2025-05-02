@@ -59,17 +59,17 @@ export const NavBar = () => {
 
             <NavbarContent className="hidden sm:flex gap-6" justify="between">
                 <NavbarItem isActive={location.pathname === "/cartelera"}>
-                    <Link to="/cartelera" className={location.pathname === "/cartelera" ? "text-primary" : "text-white"}>
+                    <Link to="/cartelera" className={location.pathname === "/cartelera" ? "text-primary" : "dark:text-white"}>
                         Cartelera
                     </Link>
                 </NavbarItem>
                 <NavbarItem isActive={location.pathname === "/cine"}>
-                    <Link to="/cine" className={location.pathname === "/cine" ? "text-primary" : "text-white"}>
+                    <Link to="/cine" className={location.pathname === "/cine" ? "text-primary" : "dark:text-white"}>
                         Cine
                     </Link>
                 </NavbarItem>
                 <NavbarItem isActive={location.pathname === "/contacto"}>
-                    <Link to="/contacto" className={location.pathname === "/contacto" ? "text-primary" : "text-white"}>
+                    <Link to="/contacto" className={location.pathname === "/contacto" ? "text-primary" : "dark:text-white"}>
                         Contacto
                     </Link>
                 </NavbarItem>
@@ -105,7 +105,7 @@ export const NavBar = () => {
                                         }, 3000)
 
                                     }}
-                                    className="text-foreground "
+                                    className="dark:text-white text-black"
                                     text={userActive}
                                     variant="bordered"
                                     isLoading={closeLoading}
@@ -127,7 +127,7 @@ export const NavBar = () => {
                     <NavbarMenuItem key={`${item}-${index}`}>
                         <Link
                             to={`/${item.toLowerCase()}`}
-                            className={location.pathname === `/${item.toLowerCase()}` ? "text-primary" : "text-white"}
+                            className={location.pathname === `/${item.toLowerCase()}` ? "text-primary" : "dark:text-white"}
                         >
                             {item}
                         </Link>
