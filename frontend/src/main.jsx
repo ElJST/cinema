@@ -6,6 +6,7 @@ import { HeroUIProvider } from '@heroui/react'
 import { BrowserRouter } from "react-router";
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { ToastProvider } from "@heroui/toast";
+import { AuthProvider } from './context/AuthContext';
 
 const root = document.getElementById("root");
 
@@ -13,8 +14,10 @@ ReactDOM.createRoot(root).render(
   <BrowserRouter>
     <HeroUIProvider>
       <NextThemesProvider attribute="class" defaultTheme="dark">
-        <ToastProvider />
-        <App />
+        <AuthProvider>
+          <ToastProvider />
+          <App />
+        </AuthProvider>
       </NextThemesProvider>
     </HeroUIProvider>
   </BrowserRouter>

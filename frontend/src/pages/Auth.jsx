@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../context/AuthContext';
 
 export const Auth = () => {
+  const key = import.meta.env.VITE_API_KEY;
   const [password, setPassword] = useState('');
   const { setIsAuth } = useAuth();
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (password === 'Justin1234') {
+    if (password === key) {
       setIsAuth(true);
       navigate('/admin');
     } else {
@@ -25,7 +26,7 @@ export const Auth = () => {
         <input
           type='password'
           placeholder='Contraseña'
-          className='border border-gray-300 p-2 rounded-2xl mb-4 text-center'
+          className='border border-gray-300 p-2 rounded-2xl mb-4 text-center dark:text-black'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
