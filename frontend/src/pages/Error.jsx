@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 export const Error = () => {
     return (
         <>
-            <section className='flex flex-col md:flex-row items-center justify-center gap-6  relative -top-20 '>
-                <aside className='h-screen md:w-[50%] w-full mt-[80px] '>
+            <section className='flex flex-col md:flex-row items-center justify-center gap-6 h-screen w-full'>
+                <aside className='h-screen md:w-[50%] w-full '>
                     <div className='flex flex-col items-center justify-center h-full text-center' >
                         <h1 className='text-3xl font-bold'>Error 404</h1>
                         <p className='mt-4'>La página que estás buscando no existe.</p>

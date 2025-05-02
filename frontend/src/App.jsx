@@ -1,30 +1,31 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { NavBar } from './components/NavBar';
-import { Footer } from './components/Footer';
-import { Cartelera } from './pages/Cartelera';
-import { Login } from './pages/Login';
-import { Register } from './pages/Register';
-import { Cine } from './pages/Cine';
-import { Contacto } from './pages/Contacto';
-import { Movie } from './pages/Movie';
+import { Cartelera } from './pages/layout/Cartelera';
+import { Login } from './pages/layout/Login';
+import { Register } from './pages/layout/Register';
+import { Cine } from './pages/layout/Cine';
+import { Contacto } from './pages/layout/Contacto';
+import { Movie } from './pages/layout/Movie';
+import { Error } from './pages/Error';
+import { Layout } from './components/Layout';
 
 function App() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <NavBar />
       <main className="flex-grow light">
         <Routes>
-          <Route path="/" element={<Navigate to="/cartelera" replace />} />
-          <Route path="/cartelera" element={<Cartelera />} />
-          <Route path="/cine" element={<Cine />} />
-          <Route path="/contacto" element={<Contacto />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/movie/:id" element={<Movie />} />
+          <Route element={<Layout />}>
+            <Route path="/" element={<Navigate to="/cartelera" replace />} />
+            <Route path="/cartelera" element={<Cartelera />} />
+            <Route path="/cine" element={<Cine />} />
+            <Route path="/contacto" element={<Contacto />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/movie/:id" element={<Movie />} />
+          </Route>
+          <Route path="*" element={<Error />} />
         </Routes>
       </main>
-      <Footer />
     </div>
   )
 }
