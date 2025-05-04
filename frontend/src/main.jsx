@@ -7,6 +7,7 @@ import { BrowserRouter } from "react-router";
 import { ThemeProvider as NextThemesProvider } from 'next-themes';
 import { ToastProvider } from "@heroui/toast";
 import { AuthProvider } from './context/AuthContext';
+import 'leaflet/dist/leaflet.css';
 
 const root = document.getElementById("root");
 
