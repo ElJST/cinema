@@ -43,7 +43,7 @@ export const NavBar = () => {
     }, []);
 
     return (
-        <Navbar shouldHideOnScroll onMenuOpenChange={setIsMenuOpen} className="border-b border-white/70">
+        <Navbar shouldHideOnScroll onMenuOpenChange={setIsMenuOpen} isMenuOpen={isMenuOpen} className="border-b border-white/70">
             <NavbarContent>
                 <NavbarMenuToggle
                     aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -122,12 +122,13 @@ export const NavBar = () => {
                 </NavbarItem>
             </NavbarContent>
 
-            <NavbarMenu>
+            <NavbarMenu onClick={() => setIsMenuOpen(false)}>
                 {menuItems.map((item, index) => (
                     <NavbarMenuItem key={`${item}-${index}`}>
                         <Link
                             to={`/${item.toLowerCase()}`}
                             className={location.pathname === `/${item.toLowerCase()}` ? "text-primary" : "dark:text-white"}
+                            onClick={() => setIsMenuOpen(false)}
                         >
                             {item}
                         </Link>
