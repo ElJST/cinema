@@ -4,6 +4,7 @@ import { MyButton } from '../../components/MyButton';
 
 export const Contacto = () => {
   const [email, setEmail] = React.useState("");
+  const [textArea, setTextArea] = React.useState("");
   const [submitted, setSubmitted] = React.useState(null);
 
   const onSubmit = (e) => {
@@ -11,7 +12,7 @@ export const Contacto = () => {
 
     const data = Object.fromEntries(new FormData(e.currentTarget));
 
-    setSubmitted(data);
+    setSubmitted({ ...data, textArea });
   };
 
   return (
@@ -38,15 +39,15 @@ export const Contacto = () => {
                 label="Description"
                 labelPlacement="outside"
                 placeholder="Enter your description"
+                value={textArea}
+                onValueChange={setTextArea}
               />
-              <MyButton text="Enviar" type="submit">
+              <MyButton 
+              text="Enviar" 
+              type="submit"
+              >
                 Submit
               </MyButton>
-              {submitted && (
-                <div className="text-small text-default-500">
-                  You submitted: <code>{JSON.stringify(submitted)}</code>
-                </div>
-              )}
             </Form>
           </section>
           <section className='flex-1 flex justify-center items-center'>
@@ -54,7 +55,11 @@ export const Contacto = () => {
             content='Enviame un mensaje por WhatsApp' 
             color='success'
             >
-              <img src="/img/codeWhatsApp.png" alt="img para WhatsApp" className='h-auto w-[60%]' />
+              <img 
+              src="/img/codeWhatsApp.png" 
+              alt="img para WhatsApp" 
+              className='h-auto w-[60%]' 
+              />
             </Tooltip>
           </section>
         </div>
