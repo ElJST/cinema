@@ -57,7 +57,12 @@ export const ShowMoviesMobile = () => {
                                     <p className='mb-4 text-center'>{selectedMovie.description}</p>
                                 </ModalBody>
                                 <ModalFooter>
-                                    <Button color="danger" variant="light" onPress={onClose}>
+                                    <Button 
+                                    color="danger" 
+                                    variant="light" 
+                                    onPress={onClose}
+                                    radius='full'
+                                    >
                                         Cerrar
                                     </Button>
                                     <Link 
