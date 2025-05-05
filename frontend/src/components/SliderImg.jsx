@@ -44,13 +44,13 @@ export const SliderImg = () => {
                 ))}
 
                 <button 
-                className='absolute h-full bg-gray-600/15 w-16 hover:bg-transparent hover:scale-110 transition-all flex justify-center items-center' 
+                className='absolute h-full bg-gray-600/15 w-16 hover:bg-transparent hover:scale-125 transition-all flex justify-center items-center' 
                 onClick={prevSlide}
                 >
                     <MdKeyboardArrowLeft size={35} className='opacity-50'/>
                 </button>
                 <button 
-                className='absolute h-full right-0 bg-gray-600/15 w-16 hover:bg-transparent hover:scale-110 transition-all flex justify-center items-center'
+                className='absolute h-full right-0 bg-gray-600/15 w-16 hover:bg-transparent hover:scale-125 transition-all flex justify-center items-center'
                 onClick={nextSlide}
                 >
                     <MdKeyboardArrowRight size={35} className='opacity-50'/>
