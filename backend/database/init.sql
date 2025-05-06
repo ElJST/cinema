@@ -1,6 +1,8 @@
 -- Script de inicialización para la base de datos 'vitepelis'
 -- Incluye creación de tablas y datos de ejemplo
 
+SET NAMES 'utf8mb4';
+
 CREATE DATABASE IF NOT EXISTS vitepelis;
 USE vitepelis;
 
