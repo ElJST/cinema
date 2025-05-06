@@ -76,15 +76,14 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `card`, `date`) VALUES
 	(8, 'Ana', 'ana@gmail.com', '$2b$10$juhGmVjusDLfZX6rUUHfNe6N/RBWNVFVkjTWfYf0O8/2TWsJl85FW', '1231231231231231', '2000-01-01'),
 	(9, 'Pepe', 'pepe@gmail.com', '$2b$10$ucQ1ZZ3IbTwm1k3h/rPc0uS4bORw6GFuOBdFFXOu.2DbVqspHUkt6', '2398472389428965', '2002-01-01'),
 	(10, 'Pepito', 'pepito@gmail.com', '$2b$10$iXm46Wk3T45G3FUd.hCW.O.MC5GyKoYAkRyMR2vSw2cUOekivOzyG', '8623783645784365', '2001-01-01');
-;
 
 INSERT INTO `movies` (`id`, `name`, `description`, `routeImg`, `routeImgSlider`, `duration`) VALUES
-	(1, 'Capitan America', 'Tras reunirse con el recién elegido presidente de Estados Unidos Thaddeus Ross, Sam se encuentra en medio de un incidente internacional. Debe descubrir la razón detrás de un nefasto complot global antes de que la verdadera mente maestra tenga al mundo entero viendo rojo.', '/img/portada/cAmerica.jpg', '/img/slider/Capitan-America.webp', 118),
-	(2, 'Monkey', 'Cuando los gemelos Hal y Bill descubren el antiguo mono de juguete de su padre en el ático, una serie de truculentas muertes comienzan a ocurrir a su alrededor. Los hermanos deciden tirar el mono y continuar con sus vidas, distanciándose con el paso de los años. Pero cuando las misteriosas muertes vuelven a sucederse, los hermanos deberán reunirse para destruir el mono antes de que acabe con las vidas de todos a su alrededor.', '/img/portada/monkey2.jpg', '/img/slider/The-monkey.webp', 98),
-	(3, 'Paddington', 'Cuando Paddington descubre que su querida tía Lucy ha desaparecido del Hogar para Osos Jubilados, él y la familia Brown se dirigen a las selvas de Perú para buscarla, siendo la única pista de su paradero un punto marcado en un enigmático mapa. Decidido a resolver el misterio, Paddington se embarca en una emocionante búsqueda a través de las selvas tropicales del Amazonas para encontrar a su tía... y puede que también descubra uno de los tesoros más legendarios del mundo.', '/img/portada/osito.jpg', '/img/slider/osito.webp', 119),
-	(4, 'La última reina', 'Ambientada en la sangrienta corte Tudor del infame rey Enrique VIII de Inglaterra y contada desde el punto de vista de la reina Catalina Parr, la sexta y última esposa de Enrique y la única que evitó el destierro o la muerte.', '/img/portada/reina.jpg', '/img/slider/La-ultima-reina.webp', 120),
-	(5, 'Thunderbolts', 'Thunderbolts* reúne un equipo poco convencional de antihéroes: Yelena Belova, Bucky Barnes, Red Guardian, Ghost, Taskmaster y John Walker. Después de verse atrapados en una trampa mortal urdida por Valentina Allegra de Fontaine, estos marginados deben embarcarse en una peligrosa misión que les obligará a enfrentarse a los recovecos más oscuros', '/img/portada/thunderbolts.jpg', '/img/slider/thunderbotls.webp', 90),
-	(6, 'Confidencial', 'Fascinante drama de espionaje sobre los legendarios agentes de inteligencia George Woodhouse y su amada esposa Kathryn. Cuando surgen sospechas de que Kathryn ha podido traicionar a la nación, George deberá afrontar el reto definitivo: elegir entre lealtad al país o a su matrimonio.', '/img/portada/confidential.jpg', '/img/slider/Confidencial.webp', 93);
+	(1, 'Capitan America', 'Tras reunirse con el recien elegido presidente de Estados Unidos Thaddeus Ross, Sam se encuentra en medio de un incidente internacional. Debe descubrir la razon detras de un nefasto complot global antes de que la verdadera mente maestra tenga al mundo entero viendo rojo.', '/img/portada/cAmerica.jpg', '/img/slider/Capitan-America.webp', 118),
+	(2, 'Monkey', 'Cuando los gemelos Hal y Bill descubren el antiguo mono de juguete de su padre en el atico, una serie de truculentas muertes comienzan a ocurrir a su alrededor. Los hermanos deciden tirar el mono y continuar con sus vidas, distanciandose con el paso de los anos. Pero cuando las misteriosas muertes vuelven a sucederse, los hermanos deberan reunirse para destruir el mono antes de que acabe con las vidas de todos a su alrededor.', '/img/portada/monkey2.jpg', '/img/slider/The-monkey.webp', 98),
+	(3, 'Paddington', 'Cuando Paddington descubre que su querida tia Lucy ha desaparecido del Hogar para Osos Jubilados, el y la familia Brown se dirigen a las selvas de Peru para buscarla, siendo la unica pista de su paradero un punto marcado en un enigmatico mapa. Decidido a resolver el misterio, Paddington se embarca en una emocionante busqueda a traves de las selvas tropicales del Amazonas para encontrar a su tia... y puede que tambien descubra uno de los tesoros mas legendarios del mundo.', '/img/portada/osito.jpg', '/img/slider/osito.webp', 119),
+	(4, 'La ultima reina', 'Ambientada en la sangrienta corte Tudor del infame rey Enrique VIII de Inglaterra y contada desde el punto de vista de la reina Catalina Parr, la sexta y ultima esposa de Enrique y la unica que evito el destierro o la muerte.', '/img/portada/reina.jpg', '/img/slider/La-ultima-reina.webp', 120),
+	(5, 'Thunderbolts', 'Thunderbolts* reune un equipo poco convencional de antiheroes: Yelena Belova, Bucky Barnes, Red Guardian, Ghost, Taskmaster y John Walker. Despues de verse atrapados en una trampa mortal urdida por Valentina Allegra de Fontaine, estos marginados deben embarcarse en una peligrosa mision que les obligara a enfrentarse a los recovecos mas oscuros', '/img/portada/thunderbolts.jpg', '/img/slider/thunderbotls.webp', 90),
+	(6, 'Confidencial', 'Fascinante drama de espionaje sobre los legendarios agentes de inteligencia George Woodhouse y su amada esposa Kathryn. Cuando surgen sospechas de que Kathryn ha podido traicionar a la nacion, George debera afrontar el reto definitivo: elegir entre lealtad al pais o a su matrimonio.', '/img/portada/confidential.jpg', '/img/slider/Confidencial.webp', 93);
 
 INSERT INTO `seats` (`id`, `idPeli`, `idUser`, `state`) VALUES
 	(1, 1, NULL, 'disponible'),
@@ -208,18 +207,9 @@ INSERT INTO `seats` (`id`, `idPeli`, `idUser`, `state`) VALUES
 	(119, 6, NULL, 'disponible'),
 	(120, 6, NULL, 'disponible');
 
-
-INSERT INTO `comments` (`id`, `nameuser`, `idpeli`, `comment`, `created_at`) VALUES
-	(1, 'Justin', 1, 'Muy buena peli', '2025-04-28'),
-	(2, 'Erik', 1, 'Bienn', '2025-04-28'),
-	(3, 'Diana', 1, 'Me gusto mucho', '2025-04-28'),
-	(4, 'Alex', 1, 'Si gusto', '2025-04-29'),
-	(5, 'Jessica', 1, 'Me encantó', '2025-04-29'),
-	(6, 'Jessica', 2, 'Me gusto mucho ', '2025-04-29'),
-	(7, 'Jessica', 3, 'Muy bonita', '2025-04-29'),
-	(8, 'Justin', 2, 'Me gustó mucho', '2025-04-29'),
-	(9, 'Justin', 3, 'Que way', '2025-05-01'),
-	(10, 'Justin', 5, 'La recomiendo', '2025-05-02'),
-	(11, 'Alex', 3, 'Muy buena pelii', '2025-05-02'),
-	(12, 'Justin', 4, 'Me encantó', '2025-05-04');
-;
+INSERT INTO `comments` (`id`, `user_id`, `movie_id`, `description`, `date`) VALUES
+	(1, 1, 1, 'Excelente pelicula, me gusto mucho la trama y los efectos especiales.', '2024-05-01 14:30:00'),
+	(2, 2, 3, 'Muy divertida para ver en familia, los ninos la disfrutaron bastante.', '2024-05-02 10:15:00'),
+	(3, 3, 2, 'Un poco aterradora, pero muy bien hecha. Recomendable.', '2024-05-03 18:45:00'),
+	(4, 4, 4, 'Buena ambientacion historica, pero algo lenta en algunas partes.', '2024-05-04 16:20:00'),
+	(5, 5, 6, 'Intrigante y bien actuada. Me mantuvo interesado hasta el final.', '2024-05-05 12:05:00');
