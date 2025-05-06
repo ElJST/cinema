@@ -11,22 +11,6 @@ Proyecto fullstack de gestión de cartelera de películas, stack:
 
 ## 📁 Estructura del proyecto
 
-<<<<<<< HEAD
-Cinema/
-├── backend/
-│ ├── server.js
-│ ├── dbConnection/
-│ │ └── db.js
-│ ├── .env
-│ └── .env.example
-├── frontend/
-│ ├── src/
-│ ├── vite.config.js
-│ ├── .env
-│ └── .env.example
-├── docker-compose.yml
-└── run.sh
-=======
 Cinema/ <br/>
 ├── backend/ <br/>
 │ ├── server.js <br/>
@@ -41,8 +25,6 @@ Cinema/ <br/>
 │ └── .env.example <br/>
 ├── docker-compose.yml <br/>
 └── run.sh <br/>
->>>>>>> 5986907c84c92f029351d8cea05a6d0a8965c700
-
 ---
 
 ## 🚀 Pasos para levantar el proyecto localmente
