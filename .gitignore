@@ -14,31 +14,9 @@ logs/
 
 # OS
 .DS_Store
-Thumbs.db
-
-# Vite build
-frontend/dist/
-
-# Backend build (si usas TypeScript o transpilas)
-backend/build/
-backend/dist/
+Thumbs.debug
 
 # Editor configs
 .vscode/
 .idea/
 *.swp
-
-# React/Parcel/Vite cache
-frontend/.vite/
-frontend/.cache/
-
-# Backend cache
-backend/.cache/
-backend/.eslintcache
-
-# Optional: si usas coverage tools
-coverage/
-
-# Optional: si usas Docker
-docker-compose.override.yml
-*.local
