@@ -1,0 +1,20 @@
+# Ignora node_modules: siempre se instala dentro del contenedor
+node_modules
+
+# Archivos de configuración y dependencias locales
+npm-debug.log
+yarn-error.log
+.env
+.DS_Store
+
+# Ignora carpetas específicas del editor
+.vscode
+.idea
+
+# Evita copiar archivos del sistema operativo o de tu IDE
+*.swp
+Thumbs.db
+
+# Evita incluir archivos temporales
+*.log
+*.tmp

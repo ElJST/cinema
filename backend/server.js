@@ -1,14 +1,29 @@
 const express = require('express');
 const cors = require('cors');
-const db = require('./db/db.js');
+const db = require('./dbConnection/db.js');
 const dotenv = require('dotenv');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
 app.use(express.json());
+const pool = require('./dbConnection/db.js');
+
+app.get('/moviessss', (req, res) => {
+  try{
+    pool.query('SELECT * FROM movies', (err, results) => {
+      if (err) {
+        console.error('Error en la consulta:', err);
+      } else {
+        res.send(results)
+      }
+    });
+  }catch(err){
+    console.log('cannot get movies from database')
+  }
+});
 
 // Manejar resgistro de usuario
 app.post('/register', async (req, res) => {
@@ -76,13 +91,17 @@ app.post('/login', async (req, res) => {
 
 // Manejar Movies
 app.get('/movies', (req, res) => {
-  db.query('SELECT * FROM movies', (err, results) => {
-    if (err) {
-      console.error('Error al obtener las películas:', err);
-      return res.status(500).json({ error: 'Error en el servidor' });
-    }
-    res.json(results);
-  });
+  try{
+    db.query('SELECT * FROM movies', (err, results) => {
+      if (err) {
+        console.error('Error al obtener las películas:', err);
+        return res.status(500).json({ error: 'Error en el servidor' });
+      }
+      res.json(results);
+    });
+  }catch(err){
+    console.log('cannot get movies from database')
+  }
 });
 
 app.get('/movies/:id', (req, res) => {
@@ -183,7 +202,7 @@ app.put('/comments/:id', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.DB_PORT_APP || 3001;
 app.listen(PORT, '0.0.0.0', () => {
   console.log(`Servidor corriendo en http://192.168.1.238:${PORT}`);
 });

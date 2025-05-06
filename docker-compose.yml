@@ -1,0 +1,46 @@
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: cinema_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: vitepelis
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./backend/database:/docker-entrypoint-initdb.d
+    networks:
+      - cinema-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: cinema_mysql
+    depends_on:
+      - mysql
+    networks:
+      - cinema-network
+  
+  backend:
+    build: ./backend
+    container_name: cinema_backend
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mysql
+    environment:
+      - DB_HOST=cinema_mysql
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=vitepelis
+    networks:
+      - cinema-network
+
+networks:
+  cinema-network:
+    driver: bridge
