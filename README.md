@@ -11,7 +11,7 @@ Proyecto fullstack de gestión de cartelera de películas, stack:
 
 ## 📁 Estructura del proyecto
 
-inema/
+Cinema/
 ├── backend/
 │ ├── server.js
 │ ├── dbConnection/
