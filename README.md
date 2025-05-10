@@ -2,9 +2,9 @@
 
 Proyecto fullstack de gestión de cartelera de películas, stack:
 
-- ⚙️ Backend: Node.js, Express, MySQL
+- ⚙️ Backend: Node.js, Express
 - 🎨 Frontend: React + Vite
-- 🐬 Base de datos: MySQL + phpMyAdmin (opcional)
+- 🐬 Base de datos: MySQL + phpMyAdmin 
 - 🐳 Docker para facilitar el despliegue local
 
 ---
