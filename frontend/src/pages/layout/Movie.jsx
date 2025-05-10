@@ -7,6 +7,7 @@ import { MyButton } from '../../components/MyButton';
 import { Tooltip } from "@heroui/react";
 import { CommentsMovie } from '../../components/CommentsMovie';
 import { addToast, Spinner } from "@heroui/react";
+import { motion } from 'framer-motion';
 
 export const Movie = () => {
 
@@ -93,21 +94,38 @@ export const Movie = () => {
     return (
         <div className="w-full pt-6 lg:pb-40">
             <div className="container mx-auto flex flex-col gap-6">
-                <div className="flex w-full">
-                    <h4 className="text-3xl md:text-5xl  max-w-xl px-6 md:px-0">
+                <motion.div
+                    className="flex w-full"
+                    initial={{ opacity: 0, translateY: -30 }}
+                    animate={{ opacity: 1, translateY: 1 }}
+                    transition={{ duration: 0.5 }}
+                >
+                    <h4
+                        className="text-3xl md:text-5xl  max-w-xl px-6 md:px-0"
+                    >
                         {movie.name}
                     </h4>
-                </div>
+                </motion.div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="flex flex-col gap-4 md:col-span-2 ">
-                        <div className="h-auto w-full shadow-xl shadow-white/15 md:shadow-none">
+                        <motion.div
+                            className="h-auto w-full shadow-xl shadow-white/15 md:shadow-none"
+                            initial={{ scale: 0.7, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.7 }}
+                        >
                             <img
                                 src={movie.routeImgSlider}
                                 alt={movie.name}
                                 className='w-full'
                             />
-                        </div>
-                        <div className="flex flex-col gap-2 px-6 md:px-0">
+                        </motion.div>
+                        <motion.div
+                            className="flex flex-col gap-2 px-6 md:px-0"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay:0.3 }}
+                        >
                             <h3 className="max-w-3xl text-2xl ">
                                 Descripción
                             </h3>
@@ -120,7 +138,7 @@ export const Movie = () => {
                             <p className="max-w-3xl text-base">
                                 {movie.duration} min.
                             </p>
-                        </div>
+                        </motion.div>
                         <div className="h-auto w-full bg-gray-200 rounded-2xl p-6 dark:text-black flex flex-col justify-center items-center">
                             {
                                 localStorage.getItem('userActive') ? (

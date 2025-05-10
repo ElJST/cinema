@@ -1,16 +1,27 @@
 import React from 'react'
 import { Maps } from '../../components/Maps'
+import { motion } from 'framer-motion'
 
 export const Cine = () => {
   return (
-    <div className="w-full pt-6 lg:pb-40">
+    <motion.div
+      className="w-full pt-6 lg:pb-40"
+      initial={{ opacity: 0, translateY: -30 }}
+      animate={{ opacity: 1, translateY: 1 }}
+      transition={{ duration: 0.5 }}
+    >
       <div className="container mx-auto flex flex-col gap-6">
         <h4 className="text-xl md:text-5xl  max-w-xl px-6 md:px-0">
           Donde estamos
         </h4>
-        <div className="h-auto w-full shadow-xl shadow-white/15 md:shadow-none">
+        <motion.div
+          className="h-auto w-full shadow-xl shadow-white/15 md:shadow-none"
+          initial={{ scale: 0.7, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.7 }}
+        >
           <Maps />
-        </div>
+        </motion.div>
         <h4 className="text-xl md:text-5xl px-6 md:px-0 w-full">
           Quienes somos
         </h4>
@@ -22,6 +33,6 @@ export const Cine = () => {
             Ven a Cinema y vive el cine como debe ser: en pantalla grande, con sonido envolvente y la mejor compañía.</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }

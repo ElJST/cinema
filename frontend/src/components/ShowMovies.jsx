@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { Spinner } from "@heroui/react";
+import { motion } from "framer-motion";
 
 export const ShowMovies = () => {
     const [movies, setMovies] = useState([]);
@@ -29,10 +30,16 @@ export const ShowMovies = () => {
 
     return (
         <section className='flex flex-wrap items-center justify-center  gap-6 p-4'>
-            {movies.map((movie) => (
-                <div key={movie.id} className='flex flex-col items-center justify-center w-72 mb-[80px] '>
+            {movies.map((movie, i) => (
+                <motion.div 
+                key={movie.id} 
+                className='flex flex-col items-center justify-center w-72 mb-[80px]'
+                initial={{ opacity: 0, translateX: -100, z: -1 }}
+                animate={{ opacity: 1, translateX: 1, z: 5}}
+                transition={{ delay: i * 0.3 }}
+                >
                     <h1 className='text-xl font-bold mb-2 text-center'>{movie.name}</h1>
-                    <div className='relative group w-full h-[500px] '>
+                    <div className='relative group w-full h-[500px] hover:scale-105 transition-all '>
                         <img
                             src={movie.routeImg}
                             alt={movie.name}
@@ -47,7 +54,7 @@ export const ShowMovies = () => {
                             </Link>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             ))}
         </section>
     )

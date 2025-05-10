@@ -1,14 +1,16 @@
 import React, { useState, useEffect , useRef } from 'react';
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { MdKeyboardArrowLeft } from "react-icons/md";
+import { motion } from "framer-motion";
+import { useNavigate } from 'react-router-dom';
 
 export const SliderImg = () => {
 
     const images = [
         '/img/slider/Capitan-America.webp',
-        '/img/slider/La-ultima-reina.webp',
-        '/img/slider/osito.webp',
         '/img/slider/The-monkey.webp',
+        '/img/slider/osito.webp',
+        '/img/slider/La-ultima-reina.webp',
         '/img/slider/thunderbotls.webp',
         '/img/slider/Confidencial.webp'
     ];
@@ -16,6 +18,7 @@ export const SliderImg = () => {
     const [current, setCurrent] = useState(0);
     const sliderRef = useRef(null);
     const touchStartX = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -48,7 +51,11 @@ export const SliderImg = () => {
 
     return (
         <>
-            <section className="relative w-full h-64 md:h-[65vh] overflow-hidden "
+            <motion.section
+                className="relative w-full h-64 md:h-[65vh] overflow-hidden"
+                initial={{ opacity: 0 , scale: 0.7}}
+                animate={{ opacity: 1, scale: 1}}
+                transition={{ type:'tween', duration: 0.5 }}
                 ref={sliderRef}
                 onTouchStart={handleTouchStart}
                 onTouchEnd={handleTouchEnd}
@@ -60,6 +67,7 @@ export const SliderImg = () => {
                         className={`absolute w-full h-full transition-opacity duration-1000 ${current === idx ? 'opacity-100' : 'opacity-0'}`
                         }
                         alt={`Slide ${idx + 1}`}
+                        onClick={() => navigate(`/movie/${current + 1}`, { replace: true })}
                     />
                 ))}
 
@@ -75,7 +83,7 @@ export const SliderImg = () => {
                 >
                     <MdKeyboardArrowRight size={35} className='opacity-50' />
                 </button>
-            </section>
+            </motion.section>
         </>
     )
 }

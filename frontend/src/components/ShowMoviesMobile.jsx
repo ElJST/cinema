@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Spinner } from "@heroui/react";
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 export const ShowMoviesMobile = () => {
     const [movies, setMovies] = useState([]);
@@ -33,7 +34,13 @@ export const ShowMoviesMobile = () => {
     return (
         <>
             {movies.map((movie) => (
-                <div key={movie.id} className='w-full px-10 mb-12'>
+                <motion.div 
+                key={movie.id} 
+                className='w-full px-10 mb-12'
+                initial={{ opacity:0 , translateY:20 }}
+                animate={{ opacity:1 , translateY:1 }}
+                transition={{ duration:1 }}
+                >
                     <h1 className='text-xl font-bold mb-2 text-center'>{movie.name}</h1>
                     <div className='relative group w-full h-auto flex justify-center '>
                         <button onClick={() => setSelectedMovie(movie)}>
@@ -44,7 +51,7 @@ export const ShowMoviesMobile = () => {
                             />
                         </button>
                     </div>
-                </div>
+                </motion.div>
             ))}
 
             {selectedMovie && (
