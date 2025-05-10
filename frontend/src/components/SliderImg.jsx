@@ -52,7 +52,7 @@ export const SliderImg = () => {
     return (
         <>
             <motion.section
-                className="relative w-full h-64 md:h-[65vh] overflow-hidden"
+                className="relative w-full h-64 md:h-[65vh] overflow-hidden cursor-pointer"
                 initial={{ opacity: 0 , scale: 0.7}}
                 animate={{ opacity: 1, scale: 1}}
                 transition={{ type:'tween', duration: 0.5 }}
